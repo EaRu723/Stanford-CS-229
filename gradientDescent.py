@@ -26,6 +26,7 @@ def gradient_descent(X, y, theta, alpha, num_iters):
         # The sum calculates element by element the error between calculated output and y multiplied by input (X)
         theta -= (alpha/m) * np.sum(X * error[:, np.newaxis], 0)
 
+        # store the histrory of cost J to track if it's decreasing
         J_history[[i]] = compute_cost(X, y, theta)
 
     return theta, J_history
@@ -39,6 +40,8 @@ def gradient_descent_multi(X, y, theta, alpha, num_iters):
     for i in range(0, num_iters):
         error = np.dot(X, theta).flatten() - y
         theta -= (alpha/m) * np.sum(X * error[:,np.newaxis],0)
+
+        J_history[[i]] = compute_cost(X, y, theta)
 
     return theta, J_history
     
